@@ -7,6 +7,8 @@ public class ToiletHandle : MonoBehaviour {
 	public Material highlight;
 
 	public GameObject water;
+	public GameObject puddle;
+	public GameObject flood;
 	public GameObject particleMild;
 	public GameObject particleHeavy;
 
@@ -27,10 +29,12 @@ public class ToiletHandle : MonoBehaviour {
 				break;
 			case 2:
 				particleMild.particleSystem.Play();
+				puddle.animation.Play();
 				break;
 			case 3:
 				particleMild.particleSystem.Stop();
 				particleHeavy.particleSystem.Play();
+				flood.animation.Play();
 				break;
 		}
 	}
