@@ -6,15 +6,22 @@ public class ToiletHandle : MonoBehaviour {
 	public Material idle;
 	public Material highlight;
 
+	private bool hover;
+
 	void ShowPrompt() {
-		renderer.material = highlight;
+		hover = true;
 	}
 
 	void Activate() {
 		transform.parent.parent.animation.Play();
 	}
 	
-	void Update() {
-		renderer.material = idle;
+	void LateUpdate() {
+		if(hover) {
+			renderer.material = highlight;
+			hover = false;
+		}
+		else
+			renderer.material = idle;
 	}
 }
