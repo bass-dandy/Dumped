@@ -296,7 +296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b773e9a2a4b654eb48da1c045f2f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPlunger: {fileID: 0}
   handle: {fileID: 100002}
   cup: {fileID: 100000}
   rim: {fileID: 100006}

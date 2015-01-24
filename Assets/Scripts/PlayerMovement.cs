@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour {
 	public float speed;
 	public Transform head;
 	
+	public GameObject playerPlunger;
+	
 	void Update () {
 		// Forward/backward component
 		if(Input.GetKey(KeyCode.W)) {
@@ -22,5 +24,9 @@ public class PlayerMovement : MonoBehaviour {
 		else if(Input.GetKey(KeyCode.D)) {
 			rigidbody.position += transform.right * speed * Time.deltaTime;
 		}
+	}
+	
+	public void PickupPlunger() {
+		playerPlunger.SetActive(true);
 	}
 }
