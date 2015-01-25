@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	public GameObject playerPlunger;
 	public GameObject playerFabreez;
+	public GameObject playerCloth;
 	
 	void Update () {
 		// Forward/backward component
@@ -33,5 +34,9 @@ public class PlayerMovement : MonoBehaviour {
 	
 	public void PickupFabreez() {
 		playerFabreez.SetActive(true);
+	}
+	
+	public void PickupCloth() {
+		playerCloth.SetActive(true);
 	}
 }

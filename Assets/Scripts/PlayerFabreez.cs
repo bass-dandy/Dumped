@@ -9,6 +9,7 @@ public class PlayerFabreez : MonoBehaviour {
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Mouse0)) {
 			animation.Play();
+			GetComponentInChildren<ParticleSystem>().Play();
 		}
 		
 		if(Input.GetKeyDown (KeyCode.Mouse1)) {
