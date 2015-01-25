@@ -15,6 +15,8 @@ public class GlobalInput : MonoBehaviour {
 	public bool leftSinkClean = false;
 	public bool rightSinkClean = false;
 	
+	public GameObject fade;
+	
 	public int numPuddles;
 	
 	public GameObject player;
@@ -57,8 +59,13 @@ public class GlobalInput : MonoBehaviour {
 			playerCanMove = false;
 			playerCanLook = false;
 			player.SendMessage("Lose");
+			Invoke("Fadeout", 2.0f);
 			CancelInvoke("Tick");	
 		}
+	}
+	
+	void Fadeout() {
+		fade.SetActive(true);
 	}
 	
 	void Freshen() {
