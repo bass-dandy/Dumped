@@ -8,8 +8,10 @@ public class SinkLeft : MonoBehaviour {
 	
 	void Plunge() {
 		plungeCount--;
+		audio.Play();
 		if(plungeCount == 0) {
 			sink.SendMessage("CleanLeft");	
+			Destroy(gameObject);
 		}
 	}
 }

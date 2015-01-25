@@ -28,7 +28,9 @@ public class Cloth : MonoBehaviour {
 	}
 	
 	void Activate() {
-		player.SendMessage("PickupCloth");
-		Destroy(gameObject);
+		if(!GameObject.FindGameObjectWithTag("GameController").GetComponent<GlobalInput>().playerHolding) {
+			player.SendMessage("PickupCloth");
+			Destroy(gameObject);
+		}
 	}
 }

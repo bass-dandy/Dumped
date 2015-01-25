@@ -32,6 +32,8 @@ public class PlayerMouseLookSitting : MonoBehaviour {
 	
 	void Update ()
 	{
+		Screen.lockCursor = true;
+		
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;

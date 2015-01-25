@@ -8,8 +8,10 @@ public class SinkRight : MonoBehaviour {
 	
 	void Plunge() {
 		plungeCount--;
+		audio.Play();
 		if(plungeCount == 0) {
 			sink.SendMessage("CleanRight");	
+			Destroy(gameObject);
 		}
 	}
 }

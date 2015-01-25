@@ -37,7 +37,9 @@ public class Plunger : MonoBehaviour {
 	}
 	
 	void Activate() {
-		player.SendMessage("PickupPlunger");
-		Destroy(gameObject);
+		if(!GameObject.FindGameObjectWithTag("GameController").GetComponent<GlobalInput>().playerHolding) {
+			player.SendMessage("PickupPlunger");
+			Destroy(gameObject);
+		}
 	}
 }

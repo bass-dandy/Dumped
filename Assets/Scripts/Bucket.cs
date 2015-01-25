@@ -33,7 +33,9 @@ public class Bucket : MonoBehaviour {
 	}
 	
 	void Activate() {
-		player.SendMessage("PickupBucket");
-		Destroy(gameObject);
+		if(!GameObject.FindGameObjectWithTag("GameController").GetComponent<GlobalInput>().playerHolding) {
+			player.SendMessage("PickupBucket");
+			Destroy(gameObject);
+		}
 	}
 }

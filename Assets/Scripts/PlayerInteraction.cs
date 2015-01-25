@@ -6,12 +6,13 @@ public class PlayerInteraction : MonoBehaviour {
 	public float radius;
 	
 	void Update () {
-		RaycastHit hit;
-		if(Physics.Raycast(transform.position, transform.forward, out hit, radius)) {
-			if(hit.transform.tag == "Interactable") {
-				hit.transform.SendMessage("ShowPrompt");
+		RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, radius);
+		
+		for(int i = 0; i < hits.Length; i++) {
+			if(hits[i].transform.tag == "Interactable") {
+				hits[i].transform.SendMessage("ShowPrompt");
 				if(Input.GetKeyDown(KeyCode.E)) {
-					hit.transform.SendMessage("Activate");
+					hits[i].transform.SendMessage("Activate");
 				}
 			}
 		}

@@ -8,6 +8,7 @@ public class ToiletBowl : MonoBehaviour {
 	
 	void Plunge() {
 		plungeCount--;
+		audio.Play();
 		if(plungeCount == 0) {
 			toilet.SendMessage("Clean");
 			plungeCount = 10;	

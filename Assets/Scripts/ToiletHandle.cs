@@ -13,6 +13,7 @@ public class ToiletHandle : MonoBehaviour {
 	public GameObject particleMild;
 	public GameObject particleHeavy;
 	
+	public AudioSource clog;
 	public AudioSource flush;
 	public AudioSource boom;
 	public AudioSource gush;
@@ -43,12 +44,12 @@ public class ToiletHandle : MonoBehaviour {
 			switch(usedCount) {
 				case 1:
 					water.animation.Play();
-					flush.Play();
+					clog.Play();
 					break;
 				case 2:
 					particleMild.particleSystem.Play();
 					puddle.animation.Play();
-					flush.Play();
+					clog.Play();
 					plungeTrigger.SetActive(true);
 					break;
 				case 3:
@@ -79,6 +80,18 @@ public class ToiletHandle : MonoBehaviour {
 			particleHeavy.particleSystem.Stop();
 			gameManager.GetComponent<GlobalInput>().toiletFlooding = false;
 			almostClean = true;
+		}
+	}
+	
+	void Update() {
+		if(usedCount < 3 && gameManager.GetComponent<GlobalInput>().time < 91) {
+			usedCount = 3;
+			particleMild.particleSystem.Stop();
+			particleHeavy.particleSystem.Play();
+			flood.SendMessage("Raise");
+			boom.Play();
+			gush.Play();
+			gameManager.GetComponent<GlobalInput>().toiletFlooding = true;
 		}
 	}
 	

@@ -23,6 +23,7 @@ public class PlayerFabreez : MonoBehaviour {
 		if(Input.GetKeyDown (KeyCode.Mouse1)) {
 			GameObject p = Instantiate (worldFabreez, transform.position, transform.rotation) as GameObject;
 			p.rigidbody.velocity = transform.parent.gameObject.transform.forward * throwForce;
+			gameManager.GetComponent<GlobalInput>().playerHolding = false;
 			gameObject.SetActive(false);
 		}
 	}

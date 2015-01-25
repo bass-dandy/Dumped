@@ -34,7 +34,9 @@ public class Fabreez : MonoBehaviour {
 	}
 	
 	void Activate() {
-		player.SendMessage("PickupFabreez");
-		Destroy(gameObject);
+		if(!GameObject.FindGameObjectWithTag("GameController").GetComponent<GlobalInput>().playerHolding) {
+			player.SendMessage("PickupFabreez");
+			Destroy(gameObject);
+		}
 	}
 }

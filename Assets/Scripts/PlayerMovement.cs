@@ -45,25 +45,30 @@ public class PlayerMovement : MonoBehaviour {
 	public void PickupPlunger() {
 		playerPlunger.SetActive(true);
 		pickup.Play();
+		gameManager.playerHolding = true;
 	}
 	
 	public void PickupFabreez() {
 		playerFabreez.SetActive(true);
 		pickup.Play();
+		gameManager.playerHolding = true;
 	}
 	
 	public void PickupCloth() {
 		playerCloth.SetActive(true);
 		pickup.Play();
+		gameManager.playerHolding = true;
 	}
 	
 	public void PickupBucket() {
 		playerBucket.SetActive(true);
 		pickup.Play();
+		gameManager.playerHolding = true;
 	}
 	
 	void Lose() {
 		door.transform.parent.animation.Play();
+		door.transform.parent.audio.Play();
 		StartCoroutine(LookAtDoor());
 	}
 	

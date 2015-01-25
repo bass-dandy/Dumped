@@ -26,6 +26,7 @@ public class PlayerCloth : MonoBehaviour {
 		if(Input.GetKeyDown (KeyCode.Mouse1)) {
 			GameObject p = Instantiate (worldCloth, transform.position, transform.rotation) as GameObject;
 			p.rigidbody.velocity = transform.parent.gameObject.transform.forward * throwForce;
+			GameObject.FindGameObjectWithTag("GameController").GetComponent<GlobalInput>().playerHolding = false;
 			gameObject.SetActive(false);
 		}
 	}

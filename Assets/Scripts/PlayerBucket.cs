@@ -32,7 +32,6 @@ public class PlayerBucket : MonoBehaviour {
 						water.SetActive(true);
 					}
 					else if(hit.transform.tag == "Dumpable" && full) {
-						hit.transform.gameObject.SendMessage("Dump");
 						full = false;	
 						water.SetActive(false);
 						particles.particleSystem.Play();
@@ -44,6 +43,7 @@ public class PlayerBucket : MonoBehaviour {
 		if(Input.GetKeyDown (KeyCode.Mouse1)) {
 			GameObject p = Instantiate (worldBucket, transform.position, transform.rotation) as GameObject;
 			p.rigidbody.velocity = transform.parent.gameObject.transform.forward * throwForce;
+			gameManager.playerHolding = false;
 			gameObject.SetActive(false);
 		}
 	}
