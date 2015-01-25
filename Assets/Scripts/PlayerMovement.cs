@@ -9,34 +9,71 @@ public class PlayerMovement : MonoBehaviour {
 	public GameObject playerPlunger;
 	public GameObject playerFabreez;
 	public GameObject playerCloth;
+	public GameObject playerBucket;
+	
+	public AudioSource pickup;
+	
+	public Camera eyes;
+	public Transform door;
+	
+	private GlobalInput gameManager;
+	
+	void Start() {
+		gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GlobalInput>();
+	}
 	
 	void Update () {
-		// Forward/backward component
-		if(Input.GetKey(KeyCode.W)) {
-			rigidbody.position += transform.forward * speed * Time.deltaTime;
-		}
-		if(Input.GetKey(KeyCode.S)) {
-			rigidbody.position -= transform.forward * speed * Time.deltaTime;
-		}
+		if(gameManager.playerCanMove) {
+			// Forward/backward component
+			if(Input.GetKey(KeyCode.W)) {
+				rigidbody.position += transform.forward * speed * Time.deltaTime;
+			}
+			if(Input.GetKey(KeyCode.S)) {
+				rigidbody.position -= transform.forward * speed * Time.deltaTime;
+			}
 		
-		// Left/right component
-		if(Input.GetKey(KeyCode.A)) {
-			rigidbody.position -= transform.right * speed * Time.deltaTime;
-		}
-		else if(Input.GetKey(KeyCode.D)) {
-			rigidbody.position += transform.right * speed * Time.deltaTime;
+			// Left/right component
+			if(Input.GetKey(KeyCode.A)) {
+				rigidbody.position -= transform.right * speed * Time.deltaTime;
+			}
+			else if(Input.GetKey(KeyCode.D)) {
+				rigidbody.position += transform.right * speed * Time.deltaTime;
+			}
 		}
 	}
 	
 	public void PickupPlunger() {
 		playerPlunger.SetActive(true);
+		pickup.Play();
 	}
 	
 	public void PickupFabreez() {
 		playerFabreez.SetActive(true);
+		pickup.Play();
 	}
 	
 	public void PickupCloth() {
 		playerCloth.SetActive(true);
+		pickup.Play();
+	}
+	
+	public void PickupBucket() {
+		playerBucket.SetActive(true);
+		pickup.Play();
+	}
+	
+	void Lose() {
+		door.transform.parent.animation.Play();
+		StartCoroutine(LookAtDoor());
+	}
+	
+	IEnumerator LookAtDoor() {
+		Vector3 relativePos = -transform.position + door.transform.position;
+		relativePos.y = 0;
+		Quaternion dest = Quaternion.LookRotation (relativePos);
+		while(true) {
+			eyes.transform.rotation = Quaternion.RotateTowards(eyes.transform.rotation, dest, 5.0f);
+			yield return null;	
+		}
 	}
 }

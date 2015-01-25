@@ -4,12 +4,20 @@ using System.Collections;
 public class PlayerFabreez : MonoBehaviour {
 
 	public GameObject worldFabreez;
+	public GameObject gameManager;
 	public float throwForce;
+	
+	public AudioSource swing;
 	
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Mouse0)) {
-			animation.Play();
-			GetComponentInChildren<ParticleSystem>().Play();
+			if(!animation.isPlaying) {
+				animation.Play();
+				swing.Play();
+			
+				GetComponentInChildren<ParticleSystem>().Play();
+				gameManager.SendMessage("Freshen");
+			}
 		}
 		
 		if(Input.GetKeyDown (KeyCode.Mouse1)) {

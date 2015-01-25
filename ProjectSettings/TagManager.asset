@@ -5,6 +5,9 @@ TagManager:
   tags:
   - Interactable
   - Plungeable
+  - Bailable
+  - Wipeable
+  - Dumpable
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

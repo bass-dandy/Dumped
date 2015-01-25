@@ -7,35 +7,78 @@ public class ToiletHandle : MonoBehaviour {
 	public Material highlight;
 
 	public GameObject water;
+	public Material cleanWater;
 	public GameObject puddle;
 	public GameObject flood;
 	public GameObject particleMild;
 	public GameObject particleHeavy;
+	
+	public AudioSource flush;
+	public AudioSource boom;
+	public AudioSource gush;
 
+	public GameObject plungeTrigger;
+
+	private GameObject gameManager;
 	private bool hover;
+	private bool almostClean = false;
 	private int usedCount;
+
+	void Awake() {
+		gameManager = GameObject.FindGameObjectWithTag("GameController");
+	}
 
 	void ShowPrompt() {
 		hover = true;
 	}
 
 	void Activate() {
-		usedCount++;
-		transform.parent.parent.animation.Play();
+		if(usedCount == 0) {
+			gameManager.SendMessage("Begin");
+		}
+		if(!transform.parent.parent.animation.isPlaying) {
+			usedCount++;
+			transform.parent.parent.animation.Play();
 		
-		switch(usedCount) {
-			case 1:
-				water.animation.Play();
-				break;
-			case 2:
-				particleMild.particleSystem.Play();
-				puddle.animation.Play();
-				break;
-			case 3:
-				particleMild.particleSystem.Stop();
-				particleHeavy.particleSystem.Play();
-				flood.animation.Play();
-				break;
+			switch(usedCount) {
+				case 1:
+					water.animation.Play();
+					flush.Play();
+					break;
+				case 2:
+					particleMild.particleSystem.Play();
+					puddle.animation.Play();
+					flush.Play();
+					plungeTrigger.SetActive(true);
+					break;
+				case 3:
+					particleMild.particleSystem.Stop();
+					particleHeavy.particleSystem.Play();
+					flood.SendMessage("Raise");
+					boom.Play();
+					gush.Play();
+					gameManager.GetComponent<GlobalInput>().toiletFlooding = true;
+					break;
+				default:
+					if(almostClean) {
+						flush.Play ();
+						water.SendMessage("Lower");
+						water.renderer.material = cleanWater;
+						gameManager.GetComponent<GlobalInput>().toiletClean = true;
+					}
+					break;
+			}
+		}
+	}
+	
+	void Clean() {
+		if(particleMild.particleSystem.isPlaying) {
+			particleMild.particleSystem.Stop();
+		}
+		if(particleHeavy.particleSystem.isPlaying) {
+			particleHeavy.particleSystem.Stop();
+			gameManager.GetComponent<GlobalInput>().toiletFlooding = false;
+			almostClean = true;
 		}
 	}
 	

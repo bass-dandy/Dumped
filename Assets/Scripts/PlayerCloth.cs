@@ -7,14 +7,19 @@ public class PlayerCloth : MonoBehaviour {
 	public float throwForce;
 	public float range;
 	
+	public AudioSource swing;
+	
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Mouse0)) {
-			animation.Play();
+			if(!animation.isPlaying) {
+				animation.Play();
+				swing.Play();
 			
-			RaycastHit hit;
-			if(Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, range)) {
-				if(hit.transform.tag == "Wipeable")
-					hit.transform.gameObject.SendMessage("Wipe");
+				RaycastHit hit;
+				if(Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, range)) {
+					if(hit.transform.tag == "Wipeable")
+						hit.transform.gameObject.SendMessage("Wipe");
+				}
 			}
 		}
 		
