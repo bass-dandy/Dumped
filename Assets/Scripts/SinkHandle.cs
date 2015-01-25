@@ -33,7 +33,7 @@ public class SinkHandle : MonoBehaviour {
 			animation.Play();
 			handleTurn.Play();
 		
-			if(!particleLeft.particleSystem.isPlaying && !particleRight.particleSystem.isPlaying && !gameManager.leftSinkClean && !gameManager.rightSinkClean)
+			if(!particleLeft.particleSystem.isPlaying && !particleRight.particleSystem.isPlaying && !gameManager.leftSinkClean && !gameManager.rightSinkClean && gameManager.time < 151)
 				Invoke ("Spew", 2);
 		}
 	}

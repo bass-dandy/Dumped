@@ -15,7 +15,8 @@ public class GlobalInput : MonoBehaviour {
 	public bool leftSinkClean = false;
 	public bool rightSinkClean = false;
 	
-	public GameObject fade;
+	public GameObject fadeLose;
+	public GameObject fadeWin;
 	
 	public int numPuddles;
 	
@@ -33,7 +34,7 @@ public class GlobalInput : MonoBehaviour {
 		Screen.lockCursor = true;
 		
 		if(toiletClean && leftSinkClean && rightSinkClean && numPuddles == 0 && !flooded && stench == 0) {
-			Debug.Log ("You win!");
+			fadeWin.SetActive(true);
 			CancelInvoke("Tick");
 		}
 	}
@@ -65,7 +66,7 @@ public class GlobalInput : MonoBehaviour {
 	}
 	
 	void Fadeout() {
-		fade.SetActive(true);
+		fadeLose.SetActive(true);
 	}
 	
 	void Freshen() {

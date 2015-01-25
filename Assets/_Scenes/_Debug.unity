@@ -3483,6 +3483,81 @@ Prefab:
   m_RootGameObject: {fileID: 1198482824}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &431918589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 431918590}
+  - 222: {fileID: 431918593}
+  - 114: {fileID: 431918592}
+  - 114: {fileID: 431918591}
+  m_Layer: 5
+  m_Name: FadeOutWin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &431918590
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 431918589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1778399112}
+  m_RootOrder: 4
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
+  m_Pivot: {x: .5, y: .5}
+--- !u!114 &431918591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 431918589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a40ed14ce480e4f8625cba533336ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeIn: 0
+  nextLevel: WinScreen
+--- !u!114 &431918592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 431918589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+--- !u!222 &431918593
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 431918589}
 --- !u!1 &439722954
 GameObject:
   m_ObjectHideFlags: 0
@@ -12361,7 +12436,8 @@ MonoBehaviour:
   toiletClean: 0
   leftSinkClean: 0
   rightSinkClean: 0
-  fade: {fileID: 2008155621}
+  fadeLose: {fileID: 2008155621}
+  fadeWin: {fileID: 431918589}
   numPuddles: 0
   player: {fileID: 2079655001}
   playerCanMove: 1
@@ -13934,6 +14010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeIn: 1
+  nextLevel: 
 --- !u!114 &1611461115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14552,7 +14629,6 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Priority: 3
   ignoreReversedGraphics: 1
   blockingObjects: 0
   m_BlockingMask:
@@ -14610,6 +14686,7 @@ RectTransform:
   - {fileID: 1818932781}
   - {fileID: 1611461113}
   - {fileID: 2008155622}
+  - {fileID: 431918590}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
@@ -14887,7 +14964,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 218.5}
-  m_SizeDelta: {x: -800, y: -467}
+  m_SizeDelta: {x: -10, y: -467}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1818932782
 MonoBehaviour:
@@ -18352,7 +18429,7 @@ GameObject:
   - 114: {fileID: 2008155624}
   - 114: {fileID: 2008155623}
   m_Layer: 5
-  m_Name: FadeOut
+  m_Name: FadeOutLose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18387,6 +18464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeIn: 0
+  nextLevel: LoseScreen
 --- !u!114 &2008155624
 MonoBehaviour:
   m_ObjectHideFlags: 0

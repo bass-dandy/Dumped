@@ -4,4 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/_Debug.unity
+  - enabled: 1
+    path: Assets/_Scenes/DiningRoom.unity
+  - enabled: 1
+    path: Assets/_Scenes/LoseScreen.unity
+  - enabled: 1
+    path: Assets/_Scenes/WinScreen.unity

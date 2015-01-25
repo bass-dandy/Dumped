@@ -5,6 +5,7 @@ using System.Collections;
 public class Fade : MonoBehaviour {
 
 	public bool fadeIn;
+	public string nextLevel;
 
 	// Use this for initialization
 	void Start () {
@@ -30,5 +31,6 @@ public class Fade : MonoBehaviour {
 			yield return null;
 		}
 		gameObject.GetComponent<Image>().color = Color.black;
+		Application.LoadLevel(nextLevel);
 	}
 }
